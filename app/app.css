@@ -45,11 +45,17 @@
   --font-inter: "Inter", sans-serif;
   --font-orbitron: "Orbitron", sans-serif;
   --font-bangers: "Bangers", sans-serif;
+
+  /* BREAKPOINTS */
+  --breakpoint-ipad: 768px;
+  --breakpoint-laptop: 1024px;
+  --breakpoint-desktop: 1280px;
+  --breakpoint-widescreen: 1536px;
 }
 
 @layer base {
   body {
-    @apply font-[16px] tracking-wide m-0 font-inter bg-bg;
+    @apply font-[16px] tracking-wide m-0 font-inter bg-bg text-white;
   }
 
   h1,
