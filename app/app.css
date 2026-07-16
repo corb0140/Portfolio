@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Orbitron:wght@400..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+  /* COLORS */
+  /* Background */
+  --color-bg: #070c1d;
+  --color-bg-secondary: #0a1024;
+  --color-bg-tertiary: #121b38;
+  --color-bg-dark: #050812;
+
+  /* Surface */
+  --color-surface: #151b2d;
+  --color-surface-light: #1f2740;
+
+  /* Blues */
+  --color-blue: #37a8ff;
+  --color-blue-light: #5ca8ff;
+  --color-blue-dark: #2e68ff;
+
+  /* Purples */
+  --color-purple: #6a5af9;
+  --color-violet: #8a5cf8;
+  --color-lavender: #a07bff;
+
+  /* Cyan */
+  --color-cyan: #50f0ff;
+
+  /* Pink */
+  --color-pink: #ff5af7;
+
+  /* Text */
+  --color-white: #f6f8ff;
+  --color-gray: #c6cbd8;
+  --color-muted: #8d96ab;
+
+  /* Laptop */
+  --color-metal: #9ca4b8;
+  --color-metal-dark: #707a90;
+
+  /* Shadows */
+  --color-shadow: #03050b;
+
+  /* FONTS */
+  --font-inter: "Inter", sans-serif;
+  --font-orbitron: "Orbitron", sans-serif;
+  --font-bangers: "Bangers", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply font-[16px] tracking-wide m-0 font-inter bg-bg;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply font-bold font-orbitron;
+  }
+
+  button {
+    @apply outline-none cursor-pointer;
+  }
+
+  input {
+    @apply outline-0 border-0;
+  }
+
+  select {
+    @apply border-0 outline-0;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+}
