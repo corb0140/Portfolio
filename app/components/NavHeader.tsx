@@ -16,11 +16,12 @@ export default function NavHeader() {
     "uppercase tracking-wider text-[12px] ipad:text-[18px] desktop:text-[12px] cursor-pointer";
 
   return (
-    <div className="fixed top-0 left-0 h-15 ipad:h-25 laptop:h-15 w-full flex items-center justify-between p-5 ipad:p-10 z-50">
-      <p className="text-2xl ipad:text-3xl laptop:text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-blue to-purple">
+    <div className="h-12 ipad:h-25 laptop:h-15 w-full flex items-center justify-between p-5 ipad:p-10 z-50 bg-transparent">
+      <p className="text-xl ipad:text-3xl laptop:text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-blue to-purple">
         MC
       </p>
 
+      {/* MENU BUTTON */}
       <AnimatePresence mode="wait" initial={false}>
         {isMenuOpen ? (
           <motion.div
@@ -32,7 +33,7 @@ export default function NavHeader() {
             className="laptop:hidden z-100 relative"
           >
             <X
-              className="cursor-pointer h-7 w-7"
+              className="cursor-pointer h-6 w-6"
               onClick={() => setIsMenuOpen(false)}
             />
           </motion.div>
@@ -46,13 +47,14 @@ export default function NavHeader() {
             className="laptop:hidden z-100 relative"
           >
             <Menu
-              className="cursor-pointer h-7 w-7"
+              className="cursor-pointer h-6 w-6"
               onClick={() => setIsMenuOpen(true)}
             />
           </motion.div>
         )}
       </AnimatePresence>
 
+      {/* MENU */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -60,7 +62,7 @@ export default function NavHeader() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
             transition={{ duration: 0.5 }}
-            className="fixed top-0 left-0 h-full w-full flex items-center justify-center bg-bg-secondary p-5 rounded-lg shadow-lg"
+            className="fixed z-50 top-0 left-0 h-full w-full flex items-center justify-center bg-bg-secondary p-5 rounded-lg shadow-lg"
           >
             <ol className="flex flex-col gap-3 items-center">
               <li
