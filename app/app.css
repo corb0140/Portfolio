@@ -18,6 +18,11 @@
   --color-blue-light: #5ca8ff;
   --color-blue-dark: #2e68ff;
 
+  /* Greens */
+  --color-green: #4caf50;
+  --color-green-light: #8bc34a;
+  --color-green-dark: #388e3c;
+
   /* Purples */
   --color-purple: #6a5af9;
   --color-violet: #8a5cf8;
@@ -40,6 +45,36 @@
 
   /* Shadows */
   --color-shadow: #03050b;
+
+  /* SOLID TECHNOLOGY COLORS */
+  --color-tech-javascript: #f7df1e;
+  --color-tech-typescript: #1b79dd;
+  --color-tech-nodejs: #339933;
+  --color-tech-expressjs: #c084fc;
+  --color-tech-postgresql: #7c083c;
+
+  --color-tech-react: #61dafb;
+  --color-tech-tailwindcss: #06b6d4;
+  --color-tech-api: #ff6105;
+
+  --color-tech-expo: #4630eb;
+  --color-tech-cloudflare: #f38020;
+
+  /* GRADIENT COLORS */
+  --color-tech-gcp-blue: #4285f4;
+  --color-tech-gcp-red: #ea4335;
+
+  --color-tech-redux-light: #c5a7f0;
+  --color-tech-redux-dark: #764abc;
+
+  --color-tech-firebase-orange: #ff8a00;
+  --color-tech-firebase-yellow: #ffca28;
+
+  --color-tech-revenuecat-pink: #ff6859;
+  --color-tech-revenuecat-orange: #ffb03a;
+
+  --color-tech-restfulapi-blue: #00bcd4;
+  --color-tech-restfulapi-green: #4caf50;
 
   /* FONTS */
   --font-inter: "Inter", sans-serif;

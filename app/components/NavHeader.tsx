@@ -78,10 +78,10 @@ export default function NavHeader() {
                 Projects
               </li>
               <li
-                onClick={() => handleNavigation("/pokemon-game")}
+                onClick={() => handleNavigation("/contact")}
                 className={linkUppercase}
               >
-                Pokemon Game
+                Contact
               </li>
             </ol>
           </motion.div>
@@ -99,10 +99,10 @@ export default function NavHeader() {
           Projects
         </li>
         <li
-          onClick={() => handleNavigation("/pokemon-game")}
+          onClick={() => handleNavigation("/contact")}
           className={linkUppercase}
         >
-          Pokemon Game
+          Contact
         </li>
       </ol>
     </div>

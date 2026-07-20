@@ -1,7 +1,9 @@
 import Banner from "~/assets/imgs/banner.png";
 import Me from "~/assets/imgs/me.jpg";
 import { Link } from "react-router";
-import { ArrowRight, Infinity } from "lucide-react";
+import { ArrowRight, Infinity, ExternalLink } from "lucide-react";
+import { projects, techColors } from "~/data/project-data";
+import { Icon } from "@iconify/react";
 
 export default function HomeScreen() {
   const baseLinkStyle =
@@ -133,8 +135,88 @@ export default function HomeScreen() {
           <ArrowRight className="inline-block ml-2 h-4 w-4 text-blue" />
         </Link>
 
-        <div></div>
+        {projects.slice(0, 2).map((project) => (
+          <div
+            key={project.name}
+            className="flex flex-col gap-2 border border-muted/30 rounded-md p-4"
+          >
+            <div className="h-40 rounded-md overflow-hidden">
+              <img
+                src={project.image}
+                alt={project.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <p>{project.name}</p>
+
+            {/* DESCRIPTION */}
+            <p className="text-sm text-muted">{project.description}</p>
+
+            {/* TECHNOLOGIES PROJECTS CARD */}
+            <div className="flex flex-wrap gap-2">
+              {project.technologies.slice(0, 5).map((tech) => (
+                <span
+                  key={tech.name}
+                  className={`text-xs font-medium p-2 rounded-md border border-muted/15 ${
+                    techColors[tech.name as keyof typeof techColors] ??
+                    "text-white"
+                  }`}
+                >
+                  {tech.name}
+                </span>
+              ))}
+            </div>
+
+            {/* LINKS */}
+            <div className="flex gap-5 mt-4 ml-1">
+              {[
+                {
+                  label: "App Store",
+                  url: project.AppStoreLink,
+                  icon: "mdi:apple",
+                  color: "text-blue",
+                },
+                {
+                  label: "Play Store",
+                  url: project.PlayStoreLink,
+                  icon: "mdi:google-play",
+                  color: "text-green",
+                },
+                {
+                  label: "Demo",
+                  url: project.demoLink,
+                  icon: "mdi:external-link",
+                  color: "text-purple",
+                },
+                {
+                  label: "GitHub",
+                  url: project.githubLink,
+                  icon: "mdi:github",
+                  color: "text-gray-500",
+                },
+              ]
+                .filter((link) => link.url)
+                .map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`text-sm ${link.color} font-bold flex items-center gap-1`}
+                  >
+                    <Icon icon={link.icon} className="h-4 w-4" />
+
+                    <p className="leading-none">{link.label}</p>
+                  </a>
+                ))}
+            </div>
+          </div>
+        ))}
       </section>
+
+      {/* TECHNOLOGIES */}
+      <section></section>
     </div>
   );
 }
