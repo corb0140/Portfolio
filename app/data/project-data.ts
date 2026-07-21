@@ -41,7 +41,7 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    name: "BefarmWell",
+    name: "BeFarmWell",
     description:
       "BeFarmWell™ is a mental wellness app created to support farmers and ranchers with simple tools, accessible resources, and community connection.",
     image: BefarmWellImage,
@@ -59,9 +59,9 @@ export const projects: Project[] = [
       { name: "RevenueCat" },
       { name: "CloudFlare" },
     ],
-    AppStoreLink: "https://apps.apple.com/us/app/befarmwell/id1661871680",
+    AppStoreLink: "https://apps.apple.com/ca/app/befarmwell/id6768093472",
     PlayStoreLink:
-      "https://play.google.com/store/apps/details?id=com.befarmwell.app",
+      "https://play.google.com/store/apps/details?id=com.befarmwell.app&pli=1",
   },
   {
     name: "Pokemon Guessing Game",
