@@ -13,11 +13,11 @@ export default function NavHeader() {
   };
 
   const linkUppercase =
-    "uppercase tracking-wider text-[12px] ipad:text-[18px] desktop:text-[12px] cursor-pointer";
+    "uppercase tracking-wider text-[12px] ipad:text-[14px] laptop:text-[12px] cursor-pointer";
 
   return (
-    <div className="h-12 ipad:h-25 laptop:h-15 w-full flex items-center justify-between p-5 ipad:p-10 z-50 bg-transparent">
-      <p className="text-xl ipad:text-3xl laptop:text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-blue to-purple">
+    <div className="h-12 ipad:h-15 w-full flex items-center justify-between p-5  z-50 bg-transparent">
+      <p className="text-xl ipad:text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-blue to-purple">
         MC
       </p>
 
@@ -30,7 +30,7 @@ export default function NavHeader() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="laptop:hidden z-100 relative"
+            className="ipad:hidden z-100 relative"
           >
             <X
               className="cursor-pointer h-6 w-6"
@@ -44,7 +44,7 @@ export default function NavHeader() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="laptop:hidden z-100 relative"
+            className="ipad:hidden z-100 relative"
           >
             <Menu
               className="cursor-pointer h-6 w-6"
@@ -88,7 +88,7 @@ export default function NavHeader() {
         )}
       </AnimatePresence>
 
-      <ol className="hidden laptop:flex gap-5">
+      <ol className="hidden ipad:flex gap-5">
         <li onClick={() => handleNavigation("/home")} className={linkUppercase}>
           Home
         </li>
