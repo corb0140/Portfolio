@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "motion/react";
 import Banner from "~/assets/imgs/banner.png";
 import Me from "~/assets/imgs/me.jpg";
@@ -8,6 +8,7 @@ import { projects, techColors } from "~/data/project-data";
 import { technologies } from "~/data/technologies";
 import { Icon } from "@iconify/react";
 import SectionTitle from "~/components/SectionTitle";
+import { socialLinks } from "~/data/social-links";
 
 export default function HomeScreen() {
   const navigate = useNavigate();
@@ -170,12 +171,9 @@ export default function HomeScreen() {
                       <Infinity className="relative text-blue h-8 w-8 desktop:h-10 desktop:w-10" />
                     </>
                   ) : (
-                    <div className="flex items-center">
-                      <p className="text-2xl desktop:text-4xl font-bold">
-                        {item.number}
-                      </p>
-                      <p className="text-xl desktop:text-3xl font-bold">+</p>
-                    </div>
+                    <p className="text-2xl desktop:text-4xl font-bold">
+                      {item.number}
+                    </p>
                   )}
                 </span>
 
@@ -196,7 +194,7 @@ export default function HomeScreen() {
           <SectionTitle title="Featured Projects" />
 
           <Link
-            to="#banner"
+            to="/projects"
             className="flex items-center w-fit text-white font-bold py-2 rounded-md"
           >
             <p className="text-sm text-blue font-light">View All Projects</p>
@@ -204,7 +202,7 @@ export default function HomeScreen() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 ipad:grid-cols-2 gap-5 laptop:border border-muted/50 rounded-lg laptop:p-5">
+        <div className="grid grid-cols-1 ipad:grid-cols-2 gap-5 rounded-lg">
           {projects.slice(0, 2).map((project, i) => (
             <motion.div
               key={project.name}
@@ -212,10 +210,10 @@ export default function HomeScreen() {
               whileInView={{ opacity: 1, rotate: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.7, delay: i * 0.15, ease: "easeOut" }}
-              className="flex flex-col gap-2 border border-muted/30 rounded-md p-4 laptop:bg-bg-tertiary"
+              className="flex flex-col gap-2 border border-muted/30 rounded-md p-4"
             >
               <div className="relative h-40 ipad:h-50 rounded-md overflow-hidden">
-                <span className="absolute right-1 top-1 z-10 bg-bg-secondary py-1 px-2.5 text-xs font-bold border border-muted rounded-md">
+                <span className="absolute right-1 top-1 z-10 bg-bg-tertiary py-1 px-2.5 text-xs font-bold border border-muted rounded-md">
                   Featured
                 </span>
 
@@ -385,23 +383,7 @@ export default function HomeScreen() {
               <p className="text-xl font-bold">Let's Connect</p>
 
               <div className="flex items-center gap-4">
-                {[
-                  {
-                    href: "https://www.linkedin.com/in/mark-corbin-18771b9b/",
-                    icon: "mdi:linkedin",
-                    label: "LinkedIn",
-                  },
-                  {
-                    href: "https://github.com/corb0140",
-                    icon: "mdi:github",
-                    label: "GitHub",
-                  },
-                  {
-                    href: "mailto:markpc1608@gmail.com",
-                    icon: "mdi:email",
-                    label: "Email",
-                  },
-                ].map((social) => (
+                {socialLinks.map((social) => (
                   <a
                     key={social.label}
                     href={social.href}

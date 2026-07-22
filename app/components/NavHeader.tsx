@@ -1,25 +1,23 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { Link } from "react-router";
 import { Menu, X } from "lucide-react";
 
 export default function NavHeader() {
-  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const handleNavigation = (path: string) => {
-    setIsMenuOpen(false);
-    navigate(path);
-  };
 
   const linkUppercase =
     "uppercase tracking-wider text-[12px] ipad:text-[14px] laptop:text-[12px] cursor-pointer";
 
   return (
-    <div className="h-12 ipad:h-15 w-full flex items-center justify-between p-5  z-50 bg-transparent">
-      <p className="text-xl ipad:text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-blue to-purple">
+    <div className="h-12 ipad:h-15 w-full flex items-center justify-between p-5 z-50 bg-transparent">
+      <Link
+        to="/home"
+        onClick={() => setIsMenuOpen(false)}
+        className="text-xl ipad:text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-blue to-purple"
+      >
         MC
-      </p>
+      </Link>
 
       {/* MENU BUTTON */}
       <AnimatePresence mode="wait" initial={false}>
@@ -54,7 +52,7 @@ export default function NavHeader() {
         )}
       </AnimatePresence>
 
-      {/* MENU */}
+      {/* MOBILE MENU */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -64,47 +62,39 @@ export default function NavHeader() {
             transition={{ duration: 0.5 }}
             className="fixed z-50 top-0 left-0 h-full w-full flex items-center justify-center bg-bg-secondary p-5 rounded-lg shadow-lg"
           >
-            <ol className="flex flex-col gap-3 items-center">
-              <li
-                onClick={() => handleNavigation("/home")}
-                className={linkUppercase}
-              >
-                Home
-              </li>
-              <li
-                onClick={() => handleNavigation("/projects")}
-                className={linkUppercase}
-              >
-                Projects
-              </li>
-              <li
-                onClick={() => handleNavigation("/contact")}
-                className={linkUppercase}
-              >
-                Contact
-              </li>
-            </ol>
+            <nav>
+              <div className="flex flex-col gap-8 items-center">
+                <Link to="/home" onClick={() => setIsMenuOpen(false)}>
+                  Home
+                </Link>
+
+                <Link to="/projects" onClick={() => setIsMenuOpen(false)}>
+                  Projects
+                </Link>
+
+                <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
+                  Contact
+                </Link>
+              </div>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <ol className="hidden ipad:flex gap-5">
-        <li onClick={() => handleNavigation("/home")} className={linkUppercase}>
+      {/* DESKTOP MENU */}
+      <nav className="hidden ipad:flex gap-5">
+        <Link to="/home" className={linkUppercase}>
           Home
-        </li>
-        <li
-          onClick={() => handleNavigation("/projects")}
-          className={linkUppercase}
-        >
+        </Link>
+
+        <Link to="/projects" className={linkUppercase}>
           Projects
-        </li>
-        <li
-          onClick={() => handleNavigation("/contact")}
-          className={linkUppercase}
-        >
+        </Link>
+
+        <Link to="/contact" className={linkUppercase}>
           Contact
-        </li>
-      </ol>
+        </Link>
+      </nav>
     </div>
   );
 }
