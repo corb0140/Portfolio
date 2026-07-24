@@ -1,5 +1,5 @@
 import BefarmWellImage from "~/assets/imgs/befarmwell.jpg";
-import Banner2 from "~/assets/imgs/banner-2.png";
+import Pokedash from "~/assets/imgs/pokedash.png";
 
 export const techColors = {
   JavaScript: "text-tech-javascript",
@@ -23,7 +23,12 @@ export const techColors = {
     "bg-linear-to-r from-tech-revenuecat-pink to-tech-revenuecat-orange bg-clip-text text-transparent",
   CloudFlare: "text-tech-cloudflare",
   "RESTful API":
-    "bg-linear-to-r from-tech-restapi-blue to-tech-restapi-green bg-clip-text text-transparent",
+    "bg-linear-to-r from-tech-restfulapi-blue to-tech-restfulapi-green bg-clip-text text-transparent",
+  TanStack:
+    "bg-linear-to-r from-tech-tanstack-light to-tech-tanstack-dark bg-clip-text text-transparent",
+  GSAP: "text-tech-gsap",
+  Motion: "text-tech-motion",
+  ReCharts: "text-tech-recharts",
 } as const;
 
 export type Project = {
@@ -33,6 +38,7 @@ export type Project = {
   technologies: {
     name: keyof typeof techColors;
   }[];
+  category: string;
   AppStoreLink?: string;
   PlayStoreLink?: string;
   demoLink?: string;
@@ -62,20 +68,24 @@ export const projects: Project[] = [
     AppStoreLink: "https://apps.apple.com/ca/app/befarmwell/id6768093472",
     PlayStoreLink:
       "https://play.google.com/store/apps/details?id=com.befarmwell.app&pli=1",
+    category: "mobile",
   },
   {
-    name: "Pokemon Guessing Game",
+    name: "PokéDash",
     description:
-      "A simple web-based game where players guess the name of a Pokemon based on its silhouette.",
-    image: Banner2,
+      "PokeDash is an interactive Pokémon web application featuring a searchable and filterable Pokédex, a Pokémon guessing game, Pokémon comparison tools, and an analytics dashboard.",
+    image: Pokedash,
     technologies: [
-      { name: "JavaScript" },
+      { name: "TypeScript" },
       { name: "React" },
       { name: "Tailwind CSS" },
       { name: "Poke API" },
-      { name: "Redux Toolkit" },
+      { name: "TanStack" },
+      { name: "GSAP" },
+      { name: "ReCharts" },
     ],
-    demoLink: "https://pokemon-guessing-game.vercel.app/",
-    githubLink: "https://github.com/yourusername/pokemon-guessing-game",
+    category: "web",
+    demoLink: "https://pokedash-black.vercel.app/",
+    githubLink: "https://github.com/corb0140/pokedash",
   },
 ];
