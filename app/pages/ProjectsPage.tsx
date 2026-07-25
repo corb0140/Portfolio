@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { projects, techColors } from "~/data/project-data";
-import ProjectBG from "~/assets/imgs/project-bg.png";
 import { Icon } from "@iconify/react";
+import { ChevronDown } from "lucide-react";
 
 type ProjectCategory = "all" | "web" | "mobile";
 
@@ -32,51 +32,70 @@ export default function ProjectsPage() {
 
   const hasMoreProjects = visibleCount < filteredProjects.length;
 
+  const scrollToProjectSection = () => {
+    document.getElementById("projects")?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <main className="min-h-screen">
+    <main className="h-dvh">
       {/* HERO */}
-      <section className="relative min-h-[50vh] max-h-screen flex items-center justify-center overflow-hidden">
-        {/* BACKGROUND IMAGE */}
-        <img
-          src={ProjectBG}
-          alt="Project page banner image"
-          className="absolute w-full h-full object-cover"
-        />
-
+      <section className="relative h-full w-full flex items-center justify-center overflow-hidden">
         {/* HERO CONTENT */}
-        <section className="relative min-h-[50vh] max-h-screen flex items-center justify-center overflow-hidden">
-          <div className="relative z-10 w-full min-h-[50vh] px-6 text-center text-white flex flex-col items-center justify-center">
-            <div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-wider">
-                Projects
-              </h1>
+        <section className="relative min-h-[50vh] max-h-screen flex flex-col items-center justify-center overflow-hidden">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-wider">
+            Projects
+          </h1>
 
-              <p className="mt-4 text-sm md:text-xl text-muted">
-                Things I've built personally and professionally.
-              </p>
-            </div>
+          <p className="mt-4 text-xs font-light md:text-xl text-muted">
+            Things I've built personally and professionally.
+          </p>
 
-            <div className="absolute bottom-6 left-0 w-full flex flex-wrap justify-center gap-3 px-6">
-              {tabs.map((tab) => (
-                <button
-                  key={tab.value}
-                  onClick={() => handleTabChange(tab.value)}
-                  className={`border rounded-lg px-5 py-2 ipad:px-6 ipad:py-3 text-xs ipad:text-sm font-semibold uppercase tracking-wider transition-all duration-300 ${
-                    activeTab === tab.value
-                      ? "text-white shadow-md"
-                      : "text-info-text hover:bg-info-text/10"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
+          <div
+            className="flex flex-col items-center gap-1 mt-10 cursor-pointer"
+            onClick={scrollToProjectSection}
+          >
+            <span className="h-4 w-[0.5px] rounded-lg bg-linear-to-b from-blue via-pink to-purple" />
+            <p className="font-light text-xs uppercase">scroll</p>
+            <ChevronDown height={18} width={18} />
           </div>
         </section>
       </section>
 
       {/* PROJECTS */}
-      <section className="mt-10 px-6 pb-20 md:px-10 lg:px-20">
+      <section
+        className="h-dvh flex flex-col gap-6 px-6 md:px-10 lg:px-20"
+        id="projects"
+      >
+        <div className="w-full flex flex-wrap justify-center gap-3 mt-10">
+          {tabs.map((tab) => (
+            <div
+              className={`rounded-lg p-px ${
+                activeTab === tab.value
+                  ? "bg-linear-to-r from-pink to-cyan"
+                  : "bg-muted"
+              }`}
+            >
+              <button
+                key={tab.value}
+                onClick={() => handleTabChange(tab.value)}
+                className="rounded-lg px-5 py-2 ipad:px-6 text-xs font-light uppercase tracking-wider bg-bg"
+              >
+                <span
+                  className={
+                    activeTab === tab.value
+                      ? "bg-linear-to-r from-pink to-cyan bg-clip-text text-transparent"
+                      : "text-muted"
+                  }
+                >
+                  {tab.label}
+                </span>
+              </button>
+            </div>
+          ))}
+        </div>
+
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {visibleProjects.map((project, index) => (
             <article
@@ -98,7 +117,9 @@ export default function ProjectsPage() {
                   {project.name}
                 </h2>
 
-                <p className="text-sm text-muted">{project.description}</p>
+                <p className="text-sm text-muted min-h-20 max-h-25 overflow-y-auto overflow-hidden">
+                  {project.description}
+                </p>
 
                 {/* TECHNOLOGIES */}
                 <div className="flex flex-wrap gap-2 mb-2">

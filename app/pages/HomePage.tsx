@@ -3,7 +3,7 @@ import { motion, useInView, useScroll, useTransform } from "motion/react";
 import Banner from "~/assets/imgs/banner.png";
 import Me from "~/assets/imgs/me.jpg";
 import { Link, useNavigate } from "react-router";
-import { ArrowRight, Infinity } from "lucide-react";
+import { ArrowRight, ChevronDown, Infinity } from "lucide-react";
 import { projects, techColors } from "~/data/project-data";
 import { technologies } from "~/data/technologies";
 import { Icon } from "@iconify/react";
@@ -14,7 +14,7 @@ export default function HomeScreen() {
   const navigate = useNavigate();
 
   const baseLinkStyle =
-    "text-center text-white text-[14px] font-bold p-3 laptop:px-6 laptop:py-4 rounded-md";
+    "font-light text-center text-white text-[14px] font-bold p-3 laptop:px-6 laptop:py-4 rounded-md";
 
   const techRef = useRef<HTMLElement>(null);
   const footerRef = useRef(null);
@@ -54,37 +54,40 @@ export default function HomeScreen() {
   return (
     <div className="relative">
       {/* BANNER SECTION */}
-      <motion.section className="sticky top-0 z-10 h-80 ipad:min-h-110 laptop:min-h-120 desktop:min-h-screen border-b border-muted/15 bg-bg">
-        <img
-          src={Banner}
-          alt="Banner"
-          className="absolute w-full h-full object-cover"
-        />
+      <motion.section
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="sticky top-0 z-10 h-[calc(100dvh-60px)] border-y border-muted/15
+      flex flex-col items-center justify-center px-10 py-5 laptop:gap-5"
+      >
+        <div className="flex flex-col items-center justify-center gap-3 flex-1">
+          <p className="font-light ipad:text-xl laptop:text-2xl">Hello,</p>
 
-        <div className="absolute top-2 left-1 ipad:top-10 desktop:top-15 ipad:left-10 p-2 max-w-60 ipad:max-w-100 laptop:max-w-140 desktop:max-w-180 h-full flex flex-col gap-4">
-          <div className="flex flex-col gap-1">
-            <p className="ipad:text-xl laptop:text-2xl laptop:font-light">
-              Hello,
-            </p>
-
-            <h1 className="ipad:text-4xl laptop:text-5xl desktop:text-7xl">
-              I'm{" "}
-              <span className="bg-clip-text text-transparent bg-linear-to-r from-blue to-purple">
-                Mark Corbin
-              </span>
+          <h1 className="text-2xl ipad:text-4xl laptop:text-5xl desktop:text-7xl">
+            I'm{" "}
+            <span className="bg-clip-text text-transparent bg-linear-to-r from-blue to-purple">
+              Mark Corbin
+            </span>
+            <motion.div
+              initial={{ x: 10, opacity: 0 }}
+              animate={{ x: 0, opacity: 1, rotateY: 360 }}
+              transition={{ delay: 0.7, duration: 1, ease: "easeOut" }}
+              className="relative inline-block"
+            >
               .
-            </h1>
+            </motion.div>
+          </h1>
 
-            <p className="ipad:text-2xl desktop:text-3xl laptop:mt-2">
-              Junior Software Developer
-            </p>
-          </div>
+          <p className="font-light">Junior Software Developer</p>
 
-          <p className="laptop:text-xl desktop:text-2xl laptop:font-light laptop:mt-5">
-            I build clean, accessible, <br /> modern web and mobile experiences.
+          <span className="h-[0.5px] w-24 rounded-lg bg-linear-to-r from-blue via-pink to-purple" />
+
+          <p className="font-light text-center text-muted">
+            I build clean, accessible, modern web and mobile experiences.
           </p>
 
-          <div className="flex flex-col laptop:flex-row gap-4 w-3/4 ipad:mt-4 laptop:mt-6">
+          <div className="flex gap-4 mt-4">
             <div className="relative group">
               <div className="absolute -inset-0.5 bg-linear-to-r from-blue to-purple rounded-md blur-md opacity-60 group-hover:opacity-90 transition-opacity duration-300" />
               <Link
@@ -105,6 +108,12 @@ export default function HomeScreen() {
               Contact Me
             </Link>
           </div>
+        </div>
+
+        <div className="flex flex-col items-center gap-1">
+          <span className="h-4 w-[0.5px] rounded-lg bg-linear-to-b from-blue via-pink to-purple" />
+          <p className="font-light text-xs uppercase">scroll</p>
+          <ChevronDown height={18} width={18} />
         </div>
       </motion.section>
 
@@ -156,8 +165,8 @@ export default function HomeScreen() {
             className="flex flex-1 gap-2 ipad:gap-4 desktop:gap-2"
           >
             {[
-              { id: 1, title: "Projects", number: 3 },
-              { id: 2, title: "Technologies", number: 25 },
+              { id: 1, title: "Projects", number: 2 },
+              { id: 2, title: "Technologies", number: 29 },
               { id: 3, title: "Always Learning" },
             ].map((item) => (
               <div
