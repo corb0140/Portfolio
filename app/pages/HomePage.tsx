@@ -14,7 +14,7 @@ export default function HomeScreen() {
   const navigate = useNavigate();
 
   const baseLinkStyle =
-    "font-light text-center text-white text-[14px] font-bold p-3 laptop:px-6 laptop:py-4 rounded-md";
+    "font-light text-center text-white text-[14px] font-bold p-3 laptop:px-6 rounded-md";
 
   const techRef = useRef<HTMLElement>(null);
   const footerRef = useRef(null);
@@ -94,7 +94,7 @@ export default function HomeScreen() {
                 to="/projects"
                 className={
                   baseLinkStyle +
-                  " relative block bg-linear-to-r from-blue to-purple"
+                  " relative block bg-linear-to-r from-blue to-purple group-hover:scale-105 transition-all duration-300"
                 }
               >
                 View Projects
@@ -103,7 +103,10 @@ export default function HomeScreen() {
 
             <Link
               to="/contact"
-              className={baseLinkStyle + " border border-gray"}
+              className={
+                baseLinkStyle +
+                " border border-gray hover:scale-105 transition-all duration-300"
+              }
             >
               Contact Me
             </Link>
