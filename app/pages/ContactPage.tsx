@@ -2,8 +2,41 @@ import { motion } from "motion/react";
 import { Icon } from "@iconify/react";
 import { socialLinks } from "~/data/social-links";
 import { SendHorizontal } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { useState } from "react";
 
 export default function ContactPage() {
+  const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState("");
+
+  async function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+
+    setIsSending(true);
+    setStatus("");
+
+    try {
+      await emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        event.currentTarget,
+        {
+          publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+        },
+      );
+
+      setStatus("Message sent successfully!");
+      form.reset();
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      setStatus("Something went wrong. Please try again.");
+    } finally {
+      setIsSending(false);
+    }
+  }
+
   return (
     <main className="h-auto p-8 ipad:px-40 ipad:py-10 desktop:px-80 flex flex-col items-center gap-10 border-t border-muted/35">
       {/* PAGE HEADER */}
@@ -28,7 +61,7 @@ export default function ContactPage() {
       </motion.section>
 
       {/* CONTACT FORM & CONNECT */}
-      <section className="w-full flex flex-col  laptop:flex-row gap-10">
+      <section className="w-full flex flex-col laptop:flex-row gap-10">
         {/* FORM */}
         <motion.div
           initial={{ opacity: 0, y: 100 }}
@@ -40,7 +73,7 @@ export default function ContactPage() {
           }}
           className="w-full laptop:flex-1 flex flex-col"
         >
-          <form className="w-full flex flex-col gap-5">
+          <form onSubmit={handleSubmit} className="w-full flex flex-col gap-5">
             {/* NAME */}
             <div className="flex flex-col gap-2">
               <input
@@ -59,7 +92,7 @@ export default function ContactPage() {
                 id="email"
                 name="email"
                 type="email"
-                placeholder="your email"
+                placeholder="Your email"
                 required
                 className="w-full rounded-md border border-muted/30 bg-bg-secondary p-3 text-white outline-none transition-colors focus:border-blue"
               />
@@ -77,12 +110,21 @@ export default function ContactPage() {
               />
             </div>
 
+            {/* STATUS */}
+            {status && (
+              <p className="text-sm text-center text-muted">{status}</p>
+            )}
+
             {/* SEND BUTTON */}
             <button
               type="submit"
-              className="mt-2 w-full min-h-12 flex gap-2 items-center justify-center rounded-md bg-linear-to-r from-blue-dark to-purple p-3 font-bold text-white transition-opacity hover:opacity-90"
+              disabled={isSending}
+              className="mt-2 w-full min-h-12 flex gap-2 items-center justify-center rounded-md bg-linear-to-r from-blue-dark to-purple p-3 font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-50"
             >
-              <span className="text-[18px]">Send Message</span>
+              <span className="text-[18px]">
+                {isSending ? "Sending..." : "Send Message"}
+              </span>
+
               <SendHorizontal height={20} width={20} />
             </button>
           </form>
@@ -121,7 +163,7 @@ export default function ContactPage() {
             </p>
           </span>
 
-          <div className="flex laptop:flex-col gap-5 mt-2">
+          <div className="flex laptop:flex-col laptop:self-start gap-5 mt-2">
             {socialLinks.map((social) => (
               <a
                 key={social.label}
@@ -138,9 +180,9 @@ export default function ContactPage() {
                 <Icon icon={social.icon} className="h-8 w-8 shrink-0" />
 
                 <div className="hidden laptop:flex flex-col">
-                  <span className="font-bold">{social.label}</span>
+                  <span className="font-light">{social.label}</span>
 
-                  <span className="text-sm text-muted break-all">
+                  <span className="text-xs text-muted">
                     {social.href.replace("mailto:", "")}
                   </span>
                 </div>

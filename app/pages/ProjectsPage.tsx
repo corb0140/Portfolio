@@ -57,7 +57,7 @@ export default function ProjectsPage() {
             onClick={scrollToProjectSection}
           >
             <span className="h-4 w-[0.5px] rounded-lg bg-linear-to-b from-blue via-pink to-purple" />
-            <p className="font-light text-xs uppercase">scroll</p>
+            <p className="font-light text-xs uppercase">View Projects</p>
             <ChevronDown height={18} width={18} />
           </div>
         </section>

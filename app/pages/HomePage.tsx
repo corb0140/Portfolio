@@ -110,7 +110,7 @@ export default function HomeScreen() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center gap-1">
+        <div className="flex flex-col items-center gap-1 cursor-pointer">
           <span className="h-4 w-[0.5px] rounded-lg bg-linear-to-b from-blue via-pink to-purple" />
           <p className="font-light text-xs uppercase">scroll</p>
           <ChevronDown height={18} width={18} />
@@ -118,7 +118,10 @@ export default function HomeScreen() {
       </motion.section>
 
       {/* ABOUT ME SECTION */}
-      <motion.section className="relative z-20 h-auto ipad:h-110 desktop:h-120 p-8 laptop:px-25 desktop:px-80 grid grid-cols-1 ipad:grid-cols-2 gap-5 bg-bg">
+      <motion.section
+        id="about"
+        className="relative z-20 h-auto ipad:h-110 desktop:h-120 p-8 laptop:px-25 desktop:px-80 grid grid-cols-1 ipad:grid-cols-2 gap-5 bg-bg"
+      >
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

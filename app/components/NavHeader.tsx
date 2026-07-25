@@ -1,13 +1,20 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { Menu, X } from "lucide-react";
 
 export default function NavHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const linkUppercase =
-    "uppercase tracking-wider text-[12px] ipad:text-[14px] laptop:text-[12px] cursor-pointer";
+    "uppercase tracking-wider text-[12px] ipad:text-[14px] laptop:text-[12px] cursor-pointer transition-colors duration-300";
+
+  const getLinkClass = (path: string) => {
+    return `${linkUppercase} ${
+      location.pathname === path ? "text-blue" : "text-white hover:text-blue"
+    }`;
+  };
 
   return (
     <div className="h-12 ipad:h-15 w-full flex items-center justify-between p-5 z-50 bg-transparent">
@@ -64,15 +71,27 @@ export default function NavHeader() {
           >
             <nav>
               <div className="flex flex-col gap-8 items-center">
-                <Link to="/home" onClick={() => setIsMenuOpen(false)}>
+                <Link
+                  to="/home"
+                  onClick={() => setIsMenuOpen(false)}
+                  className={getLinkClass("/home")}
+                >
                   Home
                 </Link>
 
-                <Link to="/projects" onClick={() => setIsMenuOpen(false)}>
+                <Link
+                  to="/projects"
+                  onClick={() => setIsMenuOpen(false)}
+                  className={getLinkClass("/projects")}
+                >
                   Projects
                 </Link>
 
-                <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
+                <Link
+                  to="/contact"
+                  onClick={() => setIsMenuOpen(false)}
+                  className={getLinkClass("/contact")}
+                >
                   Contact
                 </Link>
               </div>
@@ -83,15 +102,15 @@ export default function NavHeader() {
 
       {/* DESKTOP MENU */}
       <nav className="hidden ipad:flex gap-5">
-        <Link to="/home" className={linkUppercase}>
+        <Link to="/home" className={getLinkClass("/home")}>
           Home
         </Link>
 
-        <Link to="/projects" className={linkUppercase}>
+        <Link to="/projects" className={getLinkClass("/projects")}>
           Projects
         </Link>
 
-        <Link to="/contact" className={linkUppercase}>
+        <Link to="/contact" className={getLinkClass("/contact")}>
           Contact
         </Link>
       </nav>
