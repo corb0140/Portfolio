@@ -332,11 +332,11 @@ export default function HomeScreen() {
                 damping: 22,
                 delay: techInView ? i * 0.075 : 0,
               }}
-              className="flex h-28 flex-col items-center justify-center gap-3 rounded-md border border-muted/30 bg-bg p-4"
+              className="flex min-h-25 flex-col items-center justify-center gap-3 rounded-md border border-muted/30 bg-bg"
             >
-              <Icon icon={tech.icon} width={28} height={28} />
+              <Icon icon={tech.icon} width={25} height={25} />
 
-              <span className="text-center text-xs font-medium">{name}</span>
+              <span className="text-center text-xs font-light">{name}</span>
             </motion.div>
           ))}
         </div>
