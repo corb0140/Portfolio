@@ -17,7 +17,7 @@ export default function NavHeader() {
   };
 
   return (
-    <div className="h-12 ipad:h-15 w-full flex items-center justify-between p-5 z-50 bg-transparent">
+    <div className="h-12 ipad:h-15 w-full flex items-center justify-between p-5 px-15 z-50 bg-transparent">
       <Link
         to="/home"
         onClick={() => setIsMenuOpen(false)}
