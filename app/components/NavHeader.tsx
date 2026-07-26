@@ -37,10 +37,14 @@ export default function NavHeader() {
             transition={{ duration: 0.2 }}
             className="ipad:hidden z-100 relative"
           >
-            <X
-              className="cursor-pointer h-6 w-6"
+            <button
+              type="button"
               onClick={() => setIsMenuOpen(false)}
-            />
+              className="relative top-2 h-10 w-10 flex items-center justify-center rounded-full border border-white/20 bg-bg/70 text-muted backdrop-blur-md transition-all hover:border-blue hover:text-white hover:shadow-[0_0_20px_rgba(55,168,255,0.25)]"
+              aria-label="Close image preview"
+            >
+              <X size={20} />
+            </button>
           </motion.div>
         ) : (
           <motion.div

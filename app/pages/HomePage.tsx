@@ -1,17 +1,21 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView, useScroll, useTransform } from "motion/react";
-import Banner from "~/assets/imgs/banner.png";
 import Me from "~/assets/imgs/me.jpg";
 import { Link, useNavigate } from "react-router";
 import { ArrowRight, ChevronDown, Infinity } from "lucide-react";
 import { projects, techColors } from "~/data/project-data";
+import type { Project } from "~/data/project-data";
 import { technologies } from "~/data/technologies";
 import { Icon } from "@iconify/react";
 import SectionTitle from "~/components/SectionTitle";
 import { socialLinks } from "~/data/social-links";
+import ProjectModal from "~/components/ProjectModal";
 
 export default function HomeScreen() {
   const navigate = useNavigate();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const baseLinkStyle =
     "font-light text-center text-white text-[14px] font-bold p-3 laptop:px-6 rounded-md";
@@ -225,7 +229,11 @@ export default function HomeScreen() {
               whileInView={{ opacity: 1, rotate: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.7, delay: i * 0.15, ease: "easeOut" }}
-              className="flex flex-col gap-2 border border-muted/30 rounded-md p-4"
+              className="flex flex-col gap-2 border border-muted/30 rounded-md p-4 cursor-pointer"
+              onClick={() => {
+                setSelectedProject(project);
+                setIsModalOpen(!isModalOpen);
+              }}
             >
               <div className="relative h-40 ipad:h-50 rounded-md overflow-hidden">
                 <span className="absolute right-1 top-1 z-10 bg-bg-tertiary py-1 px-2.5 text-xs font-bold border border-muted rounded-md">
@@ -427,6 +435,13 @@ export default function HomeScreen() {
           </p>
         </div>
       </motion.section>
+
+      {/* PROJECT MODAL */}
+      <ProjectModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(!isModalOpen)}
+      />
     </div>
   );
 }

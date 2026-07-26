@@ -1,7 +1,9 @@
 import { useMemo, useState } from "react";
 import { projects, techColors } from "~/data/project-data";
+import type { Project } from "~/data/project-data";
 import { Icon } from "@iconify/react";
 import { ChevronDown } from "lucide-react";
+import ProjectModal from "~/components/ProjectModal";
 
 type ProjectCategory = "all" | "web" | "mobile";
 
@@ -14,6 +16,9 @@ const tabs: { label: string; value: ProjectCategory }[] = [
 export default function ProjectsPage() {
   const [activeTab, setActiveTab] = useState<ProjectCategory>("all");
   const [visibleCount, setVisibleCount] = useState(projects.length);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filteredProjects = useMemo(() => {
     if (activeTab === "all") {
@@ -68,6 +73,7 @@ export default function ProjectsPage() {
         className="h-dvh flex flex-col gap-6 px-6 md:px-10 lg:px-20"
         id="projects"
       >
+        {/* TABS */}
         <div className="w-full flex flex-wrap justify-center gap-3 mt-10">
           {tabs.map((tab) => (
             <div
@@ -98,9 +104,13 @@ export default function ProjectsPage() {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {visibleProjects.map((project, index) => (
-            <article
+            <div
               key={index}
-              className="flex flex-col group overflow-hidden rounded-2xl border border-muted/35 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              className="cursor-pointer flex flex-col group overflow-hidden rounded-2xl border border-muted/35 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              onClick={() => {
+                setSelectedProject(project);
+                setIsModalOpen(!isModalOpen);
+              }}
             >
               {/* PROJECT IMAGE */}
               <div className="aspect-video overflow-hidden">
@@ -179,7 +189,7 @@ export default function ProjectsPage() {
                     ))}
                 </div>
               </div>
-            </article>
+            </div>
           ))}
         </div>
 
@@ -204,6 +214,13 @@ export default function ProjectsPage() {
           </div>
         )}
       </section>
+
+      {/* PROJECT MODAL */}
+      <ProjectModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(!isModalOpen)}
+      />
     </main>
   );
 }
