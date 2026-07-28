@@ -16,7 +16,6 @@ export const technologies = {
   TanStack: { icon: "simple-icons:tanstack" },
   "Node.js": { icon: "logos:nodejs-icon" },
   "Express.js": { icon: "simple-icons:express" },
-  "Fast API": { icon: "logos:fastapi-icon" },
   "RESTful API": { icon: "mdi:api" },
   Firebase: { icon: "logos:firebase" },
   Docker: { icon: "logos:docker-icon" },
@@ -26,6 +25,6 @@ export const technologies = {
   PostgreSQL: { icon: "logos:postgresql" },
   MongoDB: { icon: "logos:mongodb-icon" },
   Postman: { icon: "logos:postman-icon" },
-  "Firebase Cloud Messaging": { icon: "logos:firebase" },
+  Jira: { icon: "logos:jira" },
   RevenueCat: { icon: "simple-icons:revenuecat" },
 } as const;
