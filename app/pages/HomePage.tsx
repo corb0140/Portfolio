@@ -117,7 +117,7 @@ export default function HomeScreen() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center gap-1 cursor-pointer">
+        <div className="flex flex-col items-center gap-1">
           <span className="h-4 w-[0.5px] rounded-lg bg-linear-to-b from-blue via-pink to-purple" />
           <p className="font-light text-xs uppercase">scroll</p>
           <ChevronDown height={18} width={18} />
