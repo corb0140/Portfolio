@@ -18,6 +18,7 @@ export const techColors = {
   "Firebase Cloud Messaging":
     "bg-linear-to-r from-tech-firebase-orange to-tech-firebase-yellow bg-clip-text text-transparent",
   "Tailwind CSS": "text-tech-tailwindcss",
+  SQLite: "text-tech-sqlite",
   "Poke API": "text-tech-api",
   React: "text-tech-react",
   PostgreSQL: "text-tech-postgresql",
@@ -225,6 +226,7 @@ export const projects: Project[] = [
       { name: "TypeScript", icon: "logos:typescript-icon" },
       { name: "React", icon: "logos:react" },
       { name: "Tailwind CSS", icon: "logos:tailwindcss-icon" },
+      { name: "SQLite", icon: "logos:sqlite" },
       { name: "Poke API", icon: "mdi:pokeball" },
       { name: "TanStack", icon: "simple-icons:tanstack" },
       { name: "GSAP", icon: "logos:greensock" },

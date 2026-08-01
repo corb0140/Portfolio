@@ -23,6 +23,7 @@ export const technologies = {
   Git: { icon: "logos:git-icon" },
   GitHub: { icon: "mdi:github" },
   PostgreSQL: { icon: "logos:postgresql" },
+  SQLite: { icon: "logos:sqlite" },
   MongoDB: { icon: "logos:mongodb-icon" },
   Postman: { icon: "logos:postman-icon" },
   Jira: { icon: "logos:jira" },

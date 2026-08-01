@@ -176,7 +176,7 @@ export default function HomeScreen() {
           >
             {[
               { id: 1, title: "Projects", number: 2 },
-              { id: 2, title: "Technologies", number: 29 },
+              { id: 2, title: "Technologies", number: 25 },
               { id: 3, title: "Always Learning" },
             ].map((item) => (
               <div
@@ -191,7 +191,7 @@ export default function HomeScreen() {
                     </>
                   ) : (
                     <p className="text-2xl desktop:text-4xl font-bold">
-                      {item.number}
+                      {item.number + "+"}
                     </p>
                   )}
                 </span>
