@@ -6,6 +6,10 @@ import Pokedex from "~/assets/imgs/pokedex.png";
 import BefarmwellHome from "~/assets/imgs/befarmwell-home.jpg";
 import BefarmwellResources from "~/assets/imgs/befarmwell-resources.jpg";
 import BefarmwellCommunity from "~/assets/imgs/befarmwell-community.jpg";
+import Resumaker from "~/assets/imgs/resumaker.png";
+import ResumakerResumes from "~/assets/imgs/resumaker-resumes.png";
+import ResumakerSavePDF from "~/assets/imgs/resumaker-save-pdf.png";
+import ResumakerGenerateResume from "~/assets/imgs/resumaker-generate-resume.png";
 
 export const techColors = {
   JavaScript: "text-tech-javascript",
@@ -36,6 +40,10 @@ export const techColors = {
   GSAP: "text-tech-gsap",
   Motion: "text-tech-motion",
   ReCharts: "text-tech-recharts",
+  Vite: "text-tech-vite",
+  "React Router": "text-tech-reactrouter",
+  "Google AI Studio":
+    "bg-linear-to-r from-tech-gemini-blue to-tech-gemini-purple bg-clip-text text-transparent",
 } as const;
 
 export type Project = {
@@ -198,7 +206,6 @@ export const projects: Project[] = [
     PlayStoreLink:
       "https://play.google.com/store/apps/details?id=com.befarmwell.app&pli=1",
   },
-
   {
     name: "PokéDash",
 
@@ -211,7 +218,7 @@ export const projects: Project[] = [
 
     type: "Web Application",
     role: "Frontend Developer",
-    duration: "3 Weeks",
+    duration: "2 Weeks",
     status: "Completed",
 
     overview: [
@@ -225,6 +232,8 @@ export const projects: Project[] = [
     technologies: [
       { name: "TypeScript", icon: "logos:typescript-icon" },
       { name: "React", icon: "logos:react" },
+      { name: "Vite", icon: "logos:vitejs" },
+      { name: "React Router", icon: "logos:react-router" },
       { name: "Tailwind CSS", icon: "logos:tailwindcss-icon" },
       { name: "SQLite", icon: "logos:sqlite" },
       { name: "Poke API", icon: "mdi:pokeball" },
@@ -302,5 +311,109 @@ export const projects: Project[] = [
     demoLink: "https://pokedash-black.vercel.app/",
 
     githubLink: "https://github.com/corb0140/pokedash",
+  },
+  {
+    name: "Resumaker",
+
+    description:
+      "Resumaker is an AI resume builder that generates a tailored resume from a saved profile, using Google Gemini to match relevant experience and skills to each job description.",
+
+    image: Resumaker,
+
+    category: "web",
+
+    type: "Web Application",
+    role: "Frontend Developer",
+    duration: "3 Weeks",
+    status: "Completed",
+
+    overview: [
+      "Resumaker lets a user build a profile once — education, experience, skills, contact info, and links — then paste any job description to generate a resume tailored to that specific role.",
+
+      "Google Gemini reads the job description alongside the candidate's profile and selects only the skills and experience relevant to that role, rewriting achievement bullets to emphasize fit rather than just listing everything the candidate has ever done.",
+
+      "The project includes a React front end, a serverless API route for AI generation, and fully local data storage — no user data ever leaves the browser except the prompt sent to Gemini at generation time.",
+    ],
+
+    technologies: [
+      { name: "TypeScript", icon: "logos:typescript-icon" },
+      { name: "React", icon: "logos:react" },
+      { name: "Vite", icon: "logos:vitejs" },
+      { name: "React Router", icon: "logos:react-router" },
+      { name: "Tailwind CSS", icon: "logos:tailwindcss-icon" },
+      { name: "SQLite", icon: "logos:sqlite" },
+      { name: "TanStack", icon: "simple-icons:tanstack" },
+      { name: "Google AI Studio", icon: "logos:google-gemini" },
+    ],
+
+    features: [
+      {
+        title: "Profile Builder",
+        description:
+          "One-time entry of personal info, education, experience, and skills, saved locally.",
+      },
+      {
+        title: "AI-Tailored Generation",
+        description:
+          "Gemini rewrites the summary and filters skills/experience down to what's relevant for the specific job description pasted in.",
+      },
+      {
+        title: "Local-First Storage",
+        description:
+          "All profile and resume data is stored in a browser-side SQLite database — nothing persists on a server.",
+      },
+      {
+        title: "Print-Ready Export",
+        description:
+          "Generated resumes render in a clean, ATS-friendly format with a one-click Print/Save-as-PDF button.",
+      },
+    ],
+
+    screenshots: [
+      {
+        title: "Resume Generation",
+        image: ResumakerGenerateResume,
+      },
+      {
+        title: "Resume Preview",
+        image: ResumakerResumes,
+      },
+      {
+        title: "Save as PDF",
+        image: ResumakerSavePDF,
+      },
+    ],
+
+    process: [
+      {
+        title: "Planning",
+        description:
+          "Designed the resume template format and reviewed it before building the rest of the app around it.",
+      },
+      {
+        title: "Development",
+        description:
+          "Built the profile forms, local SQLite data layer, and resume rendering with React, TypeScript, and Tailwind CSS.",
+      },
+      {
+        title: "AI Integration",
+        description:
+          "Built a serverless API route that sends the candidate profile and job description to Gemini with a strict JSON schema, ensuring tailored, non-fabricated output.",
+      },
+      {
+        title: "Testing & Deployment",
+        description:
+          "Tested the application across different screen sizes and deployed it to Vercel.",
+      },
+    ],
+
+    challenge:
+      "Getting an LLM to reliably tailor a resume to a specific job — filtering out irrelevant skills and past jobs while never fabricating experience the candidate doesn't have.",
+
+    solution:
+      "Used Gemini's structured JSON output mode with an explicit schema and prompt rules, so the model can only select and rephrase facts already in the candidate's profile rather than inventing new ones.",
+
+    demoLink: "https://resumaker-mu.vercel.app/",
+    githubLink: "https://github.com/corb0140/resumaker",
   },
 ];

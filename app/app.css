@@ -53,17 +53,16 @@
   --color-tech-expressjs: #c084fc;
   --color-tech-postgresql: #7c083c;
   --color-tech-sqlite: #003b57;
-
   --color-tech-react: #61dafb;
   --color-tech-tailwindcss: #06b6d4;
   --color-tech-api: #ff6105;
-
   --color-tech-expo: #4630eb;
   --color-tech-cloudflare: #f38020;
-
   --color-tech-gsap: #88ce02;
   --color-tech-motion: #ff0055;
   --color-tech-recharts: #22c55e;
+  --color-tech-vite: #646cff;
+  --color-tech-reactrouter: #ca4245;
 
   /* GRADIENT COLORS */
   --color-tech-gcp-blue: #4285f4;
@@ -83,6 +82,9 @@
 
   --color-tech-tanstack-light: #ffdc81;
   --color-tech-tanstack-dark: #ff4154;
+
+  --color-tech-gemini-blue: #4285f4;
+  --color-tech-gemini-purple: #8e24aa;
 
   /* FONTS */
   --font-inter: "Inter", sans-serif;
