@@ -1,123 +1,136 @@
 import { motion, AnimatePresence } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router";
 import { Menu, X } from "lucide-react";
 
+const navLinks = [
+  { to: "/home", label: "Home" },
+  { to: "/projects", label: "Projects" },
+  { to: "/contact", label: "Contact" },
+];
+
 export default function NavHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
-  const linkUppercase =
-    "uppercase tracking-wider text-[12px] ipad:text-[14px] laptop:text-[12px] cursor-pointer transition-colors duration-300";
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-  const getLinkClass = (path: string) => {
-    return `${linkUppercase} ${
-      location.pathname === path ? "text-blue" : "text-white hover:text-blue"
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
+  const linkUppercase =
+    "uppercase tracking-wider text-[12px] cursor-pointer transition-colors duration-300";
+
+  const getLinkClass = (path: string) =>
+    `${linkUppercase} ${
+      location.pathname === path ? "text-blue" : "text-muted hover:text-white"
     }`;
-  };
 
   return (
-    <div className="h-12 ipad:h-15 w-full flex items-center justify-between p-5 laptop:px-15 z-50 bg-transparent">
-      <Link
-        to="/home"
-        onClick={() => setIsMenuOpen(false)}
-        className="text-xl ipad:text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-blue to-purple"
-      >
-        MC
-      </Link>
-
-      {/* MENU BUTTON */}
-      <AnimatePresence mode="wait" initial={false}>
-        {isMenuOpen ? (
-          <motion.div
-            key="close"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="ipad:hidden z-100 relative"
+    <motion.header
+      initial={{ y: -40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="fixed top-4 ipad:top-6 inset-x-0 z-100 flex justify-center px-4"
+    >
+      <div className="relative flex flex-col items-center">
+        {/* PILL */}
+        <div
+          className={`flex items-center gap-5 ipad:gap-9 rounded-full border bg-bg-secondary/60 backdrop-blur-xl px-5 py-2.5 ipad:px-8 ipad:py-3 shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300 ${
+            isScrolled
+              ? "border-white/15 shadow-[0_8px_32px_rgba(55,168,255,0.15)]"
+              : "border-white/10"
+          }`}
+        >
+          <Link
+            to="/home"
+            className="text-lg ipad:text-xl font-bold bg-clip-text text-transparent bg-linear-to-r from-blue to-purple"
           >
-            <button
-              type="button"
-              onClick={() => setIsMenuOpen(false)}
-              className="relative top-2 h-10 w-10 flex items-center justify-center rounded-full border border-white/20 bg-bg/70 text-muted backdrop-blur-md transition-all hover:border-blue hover:text-white hover:shadow-[0_0_20px_rgba(55,168,255,0.25)]"
-              aria-label="Close image preview"
+            MC
+          </Link>
+
+          <span className="hidden ipad:block h-4 w-px bg-white/10" />
+
+          {/* DESKTOP MENU */}
+          <nav className="hidden ipad:flex items-center gap-7">
+            {navLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={getLinkClass(link.to)}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* MOBILE TOGGLE */}
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen((v) => !v)}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            className="ipad:hidden relative flex h-6 w-6 items-center justify-center text-white"
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              {isMenuOpen ? (
+                <motion.span
+                  key="close"
+                  initial={{ opacity: 0, rotate: -90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: 90 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute"
+                >
+                  <X size={20} />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="open"
+                  initial={{ opacity: 0, rotate: 90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: -90 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute"
+                >
+                  <Menu size={20} />
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </button>
+        </div>
+
+        {/* MOBILE MENU DROPDOWN */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.96 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="absolute top-full mt-3 ipad:hidden w-52 rounded-3xl border border-white/10 bg-bg-secondary/90 backdrop-blur-xl p-6 shadow-[0_8px_32px_rgba(0,0,0,0.45)]"
             >
-              <X size={20} />
-            </button>
-          </motion.div>
-        ) : (
-          <motion.div
-            key="open"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="ipad:hidden z-100 relative"
-          >
-            <Menu
-              className="cursor-pointer h-6 w-6"
-              onClick={() => setIsMenuOpen(true)}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* MOBILE MENU */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5 }}
-            className="fixed z-50 top-0 left-0 h-full w-full flex items-center justify-center bg-bg-secondary p-5 rounded-lg shadow-lg"
-          >
-            <nav>
-              <div className="flex flex-col gap-8 items-center">
-                <Link
-                  to="/home"
-                  onClick={() => setIsMenuOpen(false)}
-                  className={getLinkClass("/home")}
-                >
-                  Home
-                </Link>
-
-                <Link
-                  to="/projects"
-                  onClick={() => setIsMenuOpen(false)}
-                  className={getLinkClass("/projects")}
-                >
-                  Projects
-                </Link>
-
-                <Link
-                  to="/contact"
-                  onClick={() => setIsMenuOpen(false)}
-                  className={getLinkClass("/contact")}
-                >
-                  Contact
-                </Link>
-              </div>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* DESKTOP MENU */}
-      <nav className="hidden ipad:flex gap-5">
-        <Link to="/home" className={getLinkClass("/home")}>
-          Home
-        </Link>
-
-        <Link to="/projects" className={getLinkClass("/projects")}>
-          Projects
-        </Link>
-
-        <Link to="/contact" className={getLinkClass("/contact")}>
-          Contact
-        </Link>
-      </nav>
-    </div>
+              <nav className="flex flex-col items-center gap-6">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className={getLinkClass(link.to)}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.header>
   );
 }

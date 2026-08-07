@@ -1,7 +1,7 @@
 export const technologies = {
   HTML5: { icon: "logos:html-5" },
   CSS3: { icon: "logos:css-3" },
-  Python: { icon: "logos:python" },
+  "C#": { icon: "devicon:csharp" },
   JavaScript: { icon: "logos:javascript" },
   TypeScript: { icon: "logos:typescript-icon" },
   React: { icon: "logos:react" },
@@ -23,6 +23,7 @@ export const technologies = {
   Docker: { icon: "logos:docker-icon" },
   "Google Cloud": { icon: "logos:google-cloud" },
   "Google AI Studio": { icon: "logos:google-gemini" },
+  "Claude Code": { icon: "simple-icons:anthropic" },
   Git: { icon: "logos:git-icon" },
   GitHub: { icon: "mdi:github" },
   PostgreSQL: { icon: "logos:postgresql" },
